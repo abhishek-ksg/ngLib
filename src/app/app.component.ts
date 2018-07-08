@@ -1,4 +1,7 @@
+import { Observable } from 'rxjs/internal/Observable';
 import { Component } from '@angular/core';
+
+import { Show, TvmazeService } from 'tvmaze';
 
 @Component({
   selector: 'ld-root',
@@ -6,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ld';
+  show$: Observable<Show>;
+
+  constructor(private tvMaze: TvmazeService) {
+    this.show$ = this.tvMaze.getShow(336);
+  }
 }
